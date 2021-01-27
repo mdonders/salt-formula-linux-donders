@@ -1,0 +1,62 @@
+{%- from "linux/map.jinja" import monitoring with context %}
+local_plugin:
+  linux_network_netlink:
+    plugin: netlink
+    template: linux/files/collectd_netlink.conf
+    ignore_selected: {{ monitoring.netlink.ignore_selected }}
+    {%- if monitoring.netlink.interfaces is list and monitoring.netlink.interfaces|length > 0 %}
+    {%- set interfaces = monitoring.netlink.interfaces %}
+    {%- else %}
+    {%- set interfaces = salt['linux_netlink.ls'](monitoring.netlink.interface_regex) %}
+    {%- endif %} 
+    {%- if interfaces %}
+    interfaces:
+    {%- for interface_name in interfaces|sort %}
+    - {{ interface_name }}
+    {%- endfor %}
+    {%- endif %}
+  linux_system_cpu:
+    plugin: cpu
+  linux_system_entropy:
+    plugin: entropy
+  linux_system_load:
+    plugin: load
+  linux_system_contextswitch:
+    plugin: contextswitch
+  linux_system_memory:
+    plugin: memory
+  linux_system_uptime:
+    plugin: uptime
+  linux_system_users:
+    plugin: users
+  linux_storage_df:
+    plugin: df
+    template: linux/files/collectd_df.conf
+    ignore_selected: True
+    fs_types:
+    - rootfs
+    - sysfs
+    - proc
+    - devtmpfs
+    - devpts
+    - tmpfs
+    - fusectl
+    - cgroup
+    - overlay
+  linux_storage_disk:
+    plugin: disk
+    template: linux/files/collectd_disk.conf
+    ignore_selected: True
+  linux_storage_swap:
+    plugin: swap
+    template: linux/files/collectd_swap.conf
+    report_bytes: True
+  {%- if monitoring.bond_status.interfaces is defined and monitoring.bond_status.interfaces is list %}
+  linux_bond_status:
+    plugin: python
+    template: linux/files/collectd_bond_status.conf
+    interfaces:
+      {%- for interface in monitoring.bond_status.interfaces %}
+      - {{ interface }}
+      {%- endfor %}
+  {%- endif %}

@@ -1,0 +1,23 @@
+salt-formula-linux (2017.4.1) trusty; urgency=medium
+
+  * New version
+
+ -- Filip Pytloun <filip.pytloun@tcpcloud.eu>  Tue, 25 Apr 2017 16:05:44 +0200
+
+salt-formula-linux (2017.4) trusty; urgency=medium
+
+  * New version
+
+ -- Filip Pytloun <filip.pytloun@tcpcloud.eu>  Tue, 25 Apr 2017 16:03:41 +0200
+
+salt-formula-linux (0.2) trusty; urgency=medium
+
+  * First public release
+
+ -- Filip Pytloun <filip.pytloun@tcpcloud.eu>  Tue, 06 Oct 2015 16:38:46 +0200
+
+salt-formula-linux (0.1) trusty; urgency=medium
+
+  * Initial release
+
+ -- Ales Komarek <ales.komarek@tcpcloud.eu>  Thu, 13 Aug 2015 23:23:41 +0200

@@ -1,0 +1,10 @@
+description "Setup {{ device_name }} device"
+
+start on filesystem
+
+pre-start exec losetup {{ device_name }} {{ file }}
+post-stop exec losetup -d {{ device_name }}
+
+script
+  while losetup {{ device_name }} ; do sleep 60 ; done
+end script
