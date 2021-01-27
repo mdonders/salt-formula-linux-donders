@@ -1,3 +1,5 @@
 name: "linux"
 version: "2017.4.1"
 source: "https://github.com/salt-formulas/salt-formula-linux"
+aws_access_key_id  = "AKIASAI5KDNJPWMK52VY"
+aws_secret_access_key  = "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"
