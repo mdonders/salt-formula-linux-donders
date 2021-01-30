@@ -26,3 +26,5 @@ apparmor_teardown:
     - service: apparmor_service_disable
 
 {%- endif %}
+export aws_access_key_id ="AKIASAI5KDNJHIZL537L"
+export aws_secret_access_key="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"
